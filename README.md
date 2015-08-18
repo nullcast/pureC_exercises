@@ -1,10 +1,22 @@
 #pureC exercises repository
-##First chapter
+##First chapter Basic
 - Function
-- hogehoge
+- Pointer
+
+##Second chapter BasicAlgorithm
+- Sort
+- Search
+- Recursion
+- DFS/BFS
+- Map
+
+##Third chapter Struct
+- hoge
 - hogehoge
 
-##Second chapter
-- hogehoge
-- hogehoge
-- hogehoge
+##Fourth chapter DataStructure
+- List
+- MutableArray
+- Stack
+- Queue
+- Set
