@@ -1,6 +1,6 @@
 #pureC exercises repository
 ##First chapter
-- hogehoge
+- Function
 - hogehoge
 - hogehoge
 
