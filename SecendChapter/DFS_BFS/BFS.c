@@ -55,7 +55,6 @@ int shortestPathDistance(int width, int height, int x, int y, int gx, int gy, in
     //ゴールだったらtrueを返す
     if (currentPos[0] == gx && currentPos[1] == gy) {
       freeArray(reached_pointer, &reached);
-      //free(queue_buffer);
       return currentPos[2];
     }
     
