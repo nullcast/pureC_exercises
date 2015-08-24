@@ -1,5 +1,12 @@
 #include "Pointer.h"
 
+//c言語の配列は値渡しであるため、受け取ったarrayのアドレスは関数の呼び出し元と関数内で異なる
+//しかし、配列を実引数に渡すとその配列の先頭アドレスが渡されるため、根元からいじることができる
+//c言語 point 配列はポインタで受け取ろう
+//しかし多次元配列となるとポインタのポインタで受け取ればいいのかと思うかもしれないがそれはちょっと違う
+//そこには気をつけよう
+//この関数内ではintのポインタのローカル変数resultにarrayの1つ増やした分reallocし、成功したら
+//resultの最後からindex-1までの値を一つずらして、それをarrayの先頭アドレスに入れてindexの値を変更する
 void array_insert(int index, int data, int num, int *array) {
   int *result;
   if ((result = (int*)realloc(array,num+1)) == NULL) {
@@ -16,6 +23,8 @@ void array_insert(int index, int data, int num, int *array) {
   }
 }
 
+//insertと原理はほぼ同じ
+//dataを最後に突っ込むだけ
 void array_push_back(int data, int num, int *array) {
   int *result;
   if ((result = (int*)realloc(array,num+1)) == NULL) {
@@ -29,6 +38,8 @@ void array_push_back(int data, int num, int *array) {
   }
 }
 
+//intのポインタのローカル変数resultにarrayの1つ減らした分reallocし
+//それをresultに入れて返す
 void array_pop_back(int num, int *array) {
   int *result;
   if ((result = (int*)realloc(array,num-1)) == NULL) {
