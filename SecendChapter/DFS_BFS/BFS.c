@@ -6,10 +6,12 @@
  *----------------------------------------------------------
  */
 
+//キューに値を突っ込む
 void inQueue(int *data, int *end, int **queue) {
   queue[(*end)++] = data;
 }
 
+//キューから値を取り出す
 //cの引数はあたい渡しだから、二次元配列を扱う際にそのポインタじゃないと元に影響はしない
 int* deQueue(int *end, int ***queue) {
   (*end)--;
@@ -18,6 +20,8 @@ int* deQueue(int *end, int ***queue) {
   return result;
 }
 
+//intのポインタで作った配列もどきのサイズ変更
+//元がポインタなら関数呼び出し元に影響させるにはポインタのポインタで受け取るのは鉄則
 void resize(int **data) {
   int *new_data = (int*)malloc(sizeof(int)*3);
   int i;
@@ -27,6 +31,15 @@ void resize(int **data) {
   *data = new_data;
 }
 
+//幅優先探索 BFS
+//深さ優先探索のstackの代わりにキューを使うだけ
+//たったそれだけでDFSはBFSに変わる
+//キューの実現はちょっと面倒
+//デキューする際にポインタの先頭をずらしていけば実装できる
+//データの末尾を知るためにキューポインタを用いる
+//スタートからの最短経路距離を返す関数なのでキューに入れる情報は現在の位置とスタートからの道のり
+//キューで実現することで一歩進んだ先を並行してみていくイメージ(複数の道を満遍なくみていく)
+//初めてゴールにたどり着いた時、その時のスタートからの道のりが最短経路距離になる。
 int shortestPathDistance(int width, int height, int x, int y, int gx, int gy, int** map) {
   int **queue_buffer = (int**)malloc(sizeof(int*)*width*height);
   int **reached = (int**)malloc(sizeof(int*)*width*height);
@@ -54,11 +67,12 @@ int shortestPathDistance(int width, int height, int x, int y, int gx, int gy, in
     
     //ゴールだったらtrueを返す
     if (currentPos[0] == gx && currentPos[1] == gy) {
+      int tmp = currentPos[2];
       freeArray(reached_pointer, &reached);
-      return currentPos[2];
+      return tmp;
     }
     
-    //考えられる点を全てスタックに積んでいく
+    //考えられる点を全てキューに積んでいく
     next = nextPos(width, height, currentPos[0], currentPos[1], map);
     for (i=0; i<4; i++) {
       if (next[i] != NULL) {
