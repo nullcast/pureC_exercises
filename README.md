@@ -11,8 +11,8 @@
 - Map
 
 ##Third chapter Struct
-- hoge
-- hogehoge
+- Member/Function
+- Pointer
 
 ##Fourth chapter DataStructure
 - List
