@@ -1,10 +1,10 @@
-#define INF 1000000
+#include "Map.h"
 
 //訪れたことのないdistanceの一番小さいノード(添え字)を返す
 int min_node(int num, int *distance, bool *checher){
   int node=-1, i;
   int dist=INF;
-  for (i=0; i<n; i++) {
+  for (i=0; i<num; i++) {
     if (!checher[i] && dist > distance[i]) {
       dist = distance[i];
       node = i;
@@ -16,7 +16,7 @@ int min_node(int num, int *distance, bool *checher){
 //ダイクストラのアルゴリズム
 //重み付き最短経路問題を解くおそらく最もメジャーなアルゴリズム
 //注意 隣接行列に負の数が含まれている場合では上手くいかないことがある。
-//重みの種類が一つで正の数であればおそらく最も単純で高速なアルゴリズムである
+//正の数であればおそらく最も単純で高速なアルゴリズムである
 //アルゴリズムの簡単な流れは
 //今まで通ってきた道のりと比較して、自分のノードを間接的に通るのとそのまま突っ切るのではどちらが重みが小さいかを調べる
 //間接的な方が小さいならそのノードまでの最短距離を更新する。
@@ -28,20 +28,20 @@ int min_node(int num, int *distance, bool *checher){
 int dijkstra(int s, int g, int num, int **array, int *distance, int *path)
 {
   int i;
-  bool checher = (bool*)malloc(sizeof(bool)*num);
-  for(i=0;i<n;i++){
+  bool* checher = (bool*)malloc(sizeof(bool)*num);
+  for(i=0;i<num;i++){
     distance[i] = INF;
     checher[i] = 0;
     path[i] = 0;
   }
   int node = s;
   distance[node] = 0;
-  path[node] = 1;
+  path[node] = 0;
   
   while (1) {
     int i;
-    for (i=0; i<n; i++) {
-      if(!checher[i] && distance[i] > distance[node] + a[node][i]){
+    for (i=0; i<num; i++) {
+      if(!checher[i] && distance[i] > distance[node] + array[node][i]){
         distance[i] = distance[node] + array[node][i];
         path[i] = node;
       }
