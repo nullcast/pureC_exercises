@@ -25,7 +25,7 @@ int min_node(int num, int *distance, bool *checher){
 //そのノードがゴールになるまでこれを繰り返す。
 //訪れた場所を記録しないと無限にループしてしまうので
 //訪れたノードにはチェックを入れ、チェックが入ってるノードは選ばないようにする必要が有る。
-int dijkstra(int s, int g, int num, int **array, int *distance, int *path)
+void dijkstra(int s, int num, int **array, int *distance, int *path)
 {
   int i;
   bool* checher = (bool*)malloc(sizeof(bool)*num);
@@ -47,10 +47,8 @@ int dijkstra(int s, int g, int num, int **array, int *distance, int *path)
       }
     }
     if((node = min_node(num, distance, checher)) == -1)
-      return node;
+      return;
     checher[node] = 1;
-    if(node == g)
-      return node;
   }
 }
 

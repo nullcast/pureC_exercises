@@ -11,12 +11,12 @@ int a[NUM][NUM] = {
 
 int main() {
   int *array[NUM], distance[NUM], path[NUM];
-  int i,node;
+  int i;
   for (i=0; i<NUM; i++)
     array[i] = a[i];
-  node = dijkstra(1,4,NUM,array,distance,path);
+  dijkstra(1,NUM,array,distance,path);
   
-  printf("dijkstra(2,3) = %d\n", distance[node]);
+  printf("dijkstra(1,4) = %d\n", distance[4]);
   puts("path");
   for (i=0; i<NUM; i++)
     printf("%d ", path[i]);

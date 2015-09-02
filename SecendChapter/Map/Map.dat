@@ -1,0 +1,7 @@
+dijkstra(1,4) = 21
+path
+1 0 1 0 3 
+
+warshallFloyd
+2=>3 = 13
+4=>2 = 11

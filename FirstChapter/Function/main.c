@@ -4,11 +4,10 @@ int main() {
   int a, b = 10, c = 20, i;
   double d = 3.14, e;
   int *ip;
-  char **str;
+  char *str;
   void *p;
   
   ip = (int *)malloc(sizeof(int)*1);
-  str = (char**)malloc(sizeof(char*)*1);
   func1();
   puts("");
   
@@ -28,8 +27,8 @@ int main() {
   printf("Func5 recieved number : %d\n", *ip);
   puts("");
   
-  func6(str);
-  printf("Func6 recieved str : %s\n", *str);
+  func6(&str);
+  printf("Func6 recieved str : %s\n", str);
   puts("");
   
   puts("Func7 foreach");
