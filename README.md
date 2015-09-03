@@ -1,5 +1,6 @@
 #pureC exercises repository
 ##First chapter Basic
+- Variable/Statement
 - Function
 - Pointer
 
